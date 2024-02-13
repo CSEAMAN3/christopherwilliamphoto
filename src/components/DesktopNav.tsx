@@ -8,7 +8,7 @@ import { usePathname } from "next/navigation";
 export default function DesktopNav() {
   const pathname = usePathname()
   return (
-    <nav className="hidden sm:block">
+    <nav className="hidden md:block">
       <ul className="flex gap-4">
         {headerNav.filter(link => link.href !== "/").map(link => {
           const isActive = pathname === link.href
