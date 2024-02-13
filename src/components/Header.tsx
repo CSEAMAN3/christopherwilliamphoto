@@ -10,13 +10,9 @@ export default function Header() {
           <Link href="/">Christopher William Photography</Link>
         </h1>
         {/* desktop nav */}
-        <div className="hidden md:block">
           <DesktopNav />
-        </div>
         {/* mobile nav */}
-        <div className="md:hidden">
           <MobileNav />
-        </div>
       </div>
     </header>
   )

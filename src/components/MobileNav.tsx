@@ -13,7 +13,7 @@ export default function MobileNav() {
   const classes = navToggle ? "block" : "hidden"
 
   return (
-    <>
+    <div className="md:hidden">
       {/* burger bars */}
       <div onClick={()=>setNavToggle(!navToggle)} className="cursor-pointer group">
         <div className="group-hover:bg-orange-500 w-8 h-[2px] bg-black rounded-full mb-2"></div>
@@ -32,7 +32,7 @@ export default function MobileNav() {
               {headerNav.map(link => {
                 const isActive = pathname === link.href
                 return (
-                  <li key={link.title} className="mb-8 text-white">
+                  <li key={link.href} className="mb-8 text-white">
                     <Link 
                       href={link.href} 
                       className={`${isActive ? "text-sky-800 hover:text-sky-800" : "hover:text-sky-600"} text-xl font-bold`}
@@ -47,6 +47,6 @@ export default function MobileNav() {
           </nav>
       </div>
 
-    </>
+    </div>
   )
 }
