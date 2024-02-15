@@ -13,8 +13,8 @@ export default function DesktopNav() {
         {headerNav.filter(link => link.href !== "/").map(link => {
           const isActive = pathname === link.href
           return (
-            <li key={link.href}>
-              <Link href={link.href} className={`${isActive ? "text-orange-500 hover:text-orange-500" : "hover:text-sky-500"}`}>{link.title}</Link>
+            <li key={link.href} className="">
+              <Link href={link.href} className={`${isActive ? "text-sky-500 hover:text-sky-500" : "text-slate-100 hover:text-sky-500"}`}>{link.title}</Link>
             </li>
           )
         })}
