@@ -21,7 +21,7 @@ export default function MobileNav() {
         <div className="group-hover:bg-sky-500 w-8 h-[2px] bg-white rounded-full"></div>
       </div>
       {/* burger menu */}
-      <div className={`${classes} w-screen h-full bg-slate-950 absolute top-0 left-0`}>
+      <div className={`${classes} z-10 w-screen h-full bg-slate-950 absolute top-0 left-0`}>
         {/* close menu x */}
         <div onClick={()=>setNavToggle(!navToggle)} className="w-8 h-8 absolute top-7 right-8 cursor-pointer group">
           <div className="group-hover:bg-sky-500 w-8 h-[2px] bg-white rounded-full rotate-45 absolute top-4"></div>

@@ -38,7 +38,7 @@ export default function ContactForm() {
   return (
     <form
       onSubmit={handleSubmit(processForm)}
-      className="max-w-[400px] mx-auto"
+      className="max-w-[400px] mx-auto text-slate-600"
     >
 
       <div className="mb-8">
@@ -88,7 +88,7 @@ export default function ContactForm() {
 
       <button
         disabled={isSubmitting}
-        className='rounded-lg border border-black bg-black py-2.5 font-medium text-white w-full'
+        className={`${isSubmitting ? "bg-slate-950" : "bg-slate-600"} rounded-lg border border-slate-600 bg-slate-600 py-2.5 font-medium text-stone-200 w-full hover:bg-slate-950`}
       >
         {isSubmitting ? "sending..." : "send"}
       </button>

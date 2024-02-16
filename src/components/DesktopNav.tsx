@@ -14,7 +14,7 @@ export default function DesktopNav() {
           const isActive = pathname === link.href
           return (
             <li key={link.href} className="">
-              <Link href={link.href} className={`${isActive ? "text-sky-500 hover:text-sky-500" : "text-slate-100 hover:text-sky-500"}`}>{link.title}</Link>
+              <Link href={link.href} className={`font-bold ${isActive ? "text-sky-500 hover:text-sky-500" : "text-slate-100 hover:text-sky-500"}`}>{link.title}</Link>
             </li>
           )
         })}

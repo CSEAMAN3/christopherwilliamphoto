@@ -6,7 +6,7 @@ import Logo from '../../public/images/cwplogowhite.svg'
 
 export default function Header() {
   return (
-    <header className="px-8 mb-8 bg-slate-950">
+    <header className="px-8 bg-slate-950">
       <div className="py-4 flex justify-between items-center">
         <h1>
           <Link href="/">
