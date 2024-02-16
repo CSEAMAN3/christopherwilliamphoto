@@ -10,7 +10,7 @@ export default function Home() {
       <div className="h-[500px] flex overflow-x-scroll overflow-y-hidden gap-2 py-2 mb-24">
          
           <Image 
-            src={Tman}
+            src={Lou}
             alt="anime"
             priority
             className="object-cover h-full w-[100px]"
