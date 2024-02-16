@@ -46,7 +46,7 @@ export default function Home() {
       </div>
       <section className="px-8 pb-24 max-w-[60ch]">
         <h4 className="font-bold font-mont tracking-wide text-2xl text-slate-600 mb-4">What We Do...</h4>
-        <p className="text-slate-600 mb-4">We specialise in commercial photgraphy and videography for businesses throughout Norfolk, Cambridge and Suffolk.</p>
+        <p className="text-slate-600 mb-4">We specialise in commercial photography and videography for businesses throughout Norfolk, Cambridge and Suffolk.</p>
         <p className="text-slate-600 mb-4">However, we&#39;re not just photographers and videographers; we&#39;re storytellers committed to capturing the essence of your business.</p>
         <p className="text-slate-600">Our services are tailored to your requirements. We offer one off shoots to monthly retainers designed to help businesses build regular professional social media content.</p>
       </section>
