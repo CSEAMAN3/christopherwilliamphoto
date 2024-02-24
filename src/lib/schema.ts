@@ -5,5 +5,5 @@ export const ContactFormSchema = z.object({
   email: z.string().min(3, {message: 'email is required'}).email('invalid email'),
   message: z
     .string()
-    .min(10, {message: 'message is required with a minimum of 10 characters'})
+    .min(10, {message: 'message is required with a minimum of 10 characters'}),
 })

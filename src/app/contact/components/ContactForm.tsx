@@ -7,6 +7,10 @@ import { toast } from "sonner"
 import { ContactFormSchema } from "@/lib/schema"
 import { sendEmail } from "@/app/_actions"
 
+// Importing Script for cloudflare script
+import Script from "next/script"
+
+
 export type ContactFormInputs = z.infer<typeof ContactFormSchema>
 
 export default function ContactForm() {
@@ -20,9 +24,21 @@ export default function ContactForm() {
     resolver: zodResolver(ContactFormSchema)
   })
 
-  const processForm : SubmitHandler<ContactFormInputs> = async (data) => {
+  const processForm : SubmitHandler<ContactFormInputs> = async (data, event) => {
+
+    // Create a new FormData instance from the form
+    const formData = new FormData(event?.target as HTMLFormElement);
+
+    // Retrieve the Turnstile token from the FormData
+    const turnstileToken = formData.get('cf-turnstile-response')
+
+  if (turnstileToken !== null) {
+        const extendedData: ExtendedContactFormInputs = {
+            ...data,
+            turnstileToken: turnstileToken as string // Asserting turnstileToken as string here.
+        };
     
-    const result = await sendEmail(data)
+    const result = await sendEmail(extendedData)
 
     if(result?.success){
       console.log({data: result.data})
@@ -34,8 +50,12 @@ export default function ContactForm() {
     console.log(result?.error)
     toast.error('something went wrong')
   }
+}
+
 
   return (
+    <>
+    <Script src="https://challenges.cloudflare.com/turnstile/v0/api.js" strategy="afterInteractive" />
     <form
       onSubmit={handleSubmit(processForm)}
       className="max-w-[400px] mx-auto text-slate-600"
@@ -86,6 +106,12 @@ export default function ContactForm() {
         )}
       </div>
 
+      <div 
+        className="cf-turnstile mb-8" 
+        data-theme="light" 
+        data-sitekey={process.env.NEXT_PUBLIC_CLOUDFLARE_SITE_KEY}
+      ></div>
+      
       <button
         disabled={isSubmitting}
         className={`${isSubmitting ? "bg-slate-950" : "bg-slate-600"} rounded-lg border border-slate-600 bg-slate-600 py-2.5 font-medium text-stone-200 w-full hover:bg-slate-950`}
@@ -94,5 +120,6 @@ export default function ContactForm() {
       </button>
 
     </form>
+    </>
   )
 }

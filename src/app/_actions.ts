@@ -10,8 +10,34 @@ const resend = new Resend(process.env.RESEND_API_KEY)
 
 const emailAddress = process.env.EMAIL as string
 
-export async function sendEmail(data: ContactFormInputs){
+// Extend ContactFormInputs to include the turnstileToken
+type ExtendedContactFormInputs = ContactFormInputs & {
+  turnstileToken: string;
+};
+
+async function verifyTurnstileToken(token: string): Promise<boolean> {
+  const secretKey = process.env.CLOUDFLARE_SECRET_KEY; // Make sure to set this in your environment
+  const response = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: `secret=${secretKey}&response=${token}`
+  });
+  const verificationResult = await response.json();
+  console.log("tokenResponse: ", verificationResult)
+  return verificationResult.success;
+}
+
+
+export async function sendEmail(data: ExtendedContactFormInputs){
+  console.log(data)
   const result = ContactFormSchema.safeParse(data)
+
+  // Verify the Turnstile token
+  const isTokenValid = await verifyTurnstileToken(data.turnstileToken);
+  if (!isTokenValid) {
+    console.error('Turnstile verification failed');
+    return { success: false, error: 'Turnstile verification failed' };
+  }
 
   if(result.success){
     const {name, email, message} = result.data

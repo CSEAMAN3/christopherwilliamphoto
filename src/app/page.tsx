@@ -14,6 +14,7 @@ export default function Home() {
             alt="anime"
             priority
             className="object-cover h-full w-[100px]"
+            style={{width: "auto", height: "auto"}}
           />
          
           
