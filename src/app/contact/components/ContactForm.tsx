@@ -17,11 +17,6 @@ export type ContactFormInputs = z.infer<typeof ContactFormSchema>
 
 export default function ContactForm() {
 
-  useEffect(() => {
-  reset(); // Resets the form fields
-  // Any additional logic to reset/reinitialize the Turnstile widget
-},);
-
   const {
     register,
     handleSubmit,
@@ -30,6 +25,11 @@ export default function ContactForm() {
   } = useForm<ContactFormInputs>({
     resolver: zodResolver(ContactFormSchema)
   })
+
+  useEffect(() => {
+    reset(); // Resets the form fields
+    // Any additional logic to reset/reinitialize the Turnstile widget
+  },[reset]);
 
   const processForm : SubmitHandler<ContactFormInputs> = async (data, event) => {
 
