@@ -7,11 +7,6 @@ import { toast } from "sonner"
 import { ContactFormSchema } from "@/lib/schema"
 import { sendEmail } from "@/app/_actions"
 
-// Importing Script for cloudflare script
-import Script from "next/script"
-import { useEffect, useState } from "react"
-
-const siteKey = process.env.NEXT_PUBLIC_CLOUDFLARE_SITE_KEY as string
 
 export type ContactFormInputs = z.infer<typeof ContactFormSchema>
 
@@ -26,33 +21,9 @@ export default function ContactForm() {
     resolver: zodResolver(ContactFormSchema)
   })
 
-  // useEffect(() => {
-  //   reset(); // Resets the form fields
-  //   // Any additional logic to reset/reinitialize the Turnstile widget
-  // },[reset]);
-
-  const [key, setKey] = useState(Date.now());
-
-useEffect(() => {
-  // This triggers re-rendering of the Turnstile widget by changing its key
-  setKey(Date.now());
-},[])
-
-  const processForm : SubmitHandler<ContactFormInputs> = async (data, event) => {
-
-    // Create a new FormData instance from the form
-    const formData = new FormData(event?.target as HTMLFormElement);
-
-    // Retrieve the Turnstile token from the FormData
-    const turnstileToken = formData.get('cf-turnstile-response')
-
-  if (turnstileToken !== null) {
-        const extendedData: ExtendedContactFormInputs = {
-            ...data,
-            turnstileToken: turnstileToken as string // Asserting turnstileToken as string here.
-        };
+  const processForm : SubmitHandler<ContactFormInputs> = async (data) => {
     
-    const result = await sendEmail(extendedData)
+    const result = await sendEmail(data)
 
     if(result?.success){
       console.log({data: result.data})
@@ -64,12 +35,9 @@ useEffect(() => {
     console.log(result?.error)
     toast.error('something went wrong')
   }
-}
 
 
   return (
-    <>
-    <Script src="https://challenges.cloudflare.com/turnstile/v0/api.js" strategy="afterInteractive" />
     <form
       onSubmit={handleSubmit(processForm)}
       className="max-w-[400px] mx-auto text-slate-600"
@@ -119,14 +87,7 @@ useEffect(() => {
           <p className="ml-1 mt-1 text-sm text-red-400">{errors.message.message}</p>
         )}
       </div>
-
-      <div 
-        className="cf-turnstile mb-8" 
-        data-theme="light" 
-        data-sitekey={siteKey}
-        key={key}
-      ></div>
-      
+    
       <button
         disabled={isSubmitting}
         className={`${isSubmitting ? "bg-slate-950" : "bg-slate-600"} rounded-lg border border-slate-600 bg-slate-600 py-2.5 font-medium text-stone-200 w-full hover:bg-slate-950`}
@@ -135,6 +96,5 @@ useEffect(() => {
       </button>
 
     </form>
-    </>
   )
 }
