@@ -9,7 +9,7 @@ import { sendEmail } from "@/app/_actions"
 
 // Importing Script for cloudflare script
 import Script from "next/script"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 
 const siteKey = process.env.NEXT_PUBLIC_CLOUDFLARE_SITE_KEY as string
 
@@ -26,10 +26,17 @@ export default function ContactForm() {
     resolver: zodResolver(ContactFormSchema)
   })
 
-  useEffect(() => {
-    reset(); // Resets the form fields
-    // Any additional logic to reset/reinitialize the Turnstile widget
-  },[reset]);
+  // useEffect(() => {
+  //   reset(); // Resets the form fields
+  //   // Any additional logic to reset/reinitialize the Turnstile widget
+  // },[reset]);
+
+  const [key, setKey] = useState(Date.now());
+
+useEffect(() => {
+  // This triggers re-rendering of the Turnstile widget by changing its key
+  setKey(Date.now());
+},[])
 
   const processForm : SubmitHandler<ContactFormInputs> = async (data, event) => {
 
@@ -117,6 +124,7 @@ export default function ContactForm() {
         className="cf-turnstile mb-8" 
         data-theme="light" 
         data-sitekey={siteKey}
+        key={key}
       ></div>
       
       <button
