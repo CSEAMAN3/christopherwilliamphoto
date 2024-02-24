@@ -9,12 +9,18 @@ import { sendEmail } from "@/app/_actions"
 
 // Importing Script for cloudflare script
 import Script from "next/script"
+import { useEffect } from "react"
 
 const siteKey = process.env.NEXT_PUBLIC_CLOUDFLARE_SITE_KEY as string
 
 export type ContactFormInputs = z.infer<typeof ContactFormSchema>
 
 export default function ContactForm() {
+
+  useEffect(() => {
+  reset(); // Resets the form fields
+  // Any additional logic to reset/reinitialize the Turnstile widget
+},);
 
   const {
     register,
