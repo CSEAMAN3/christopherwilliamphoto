@@ -10,6 +10,7 @@ import { sendEmail } from "@/app/_actions"
 // Importing Script for cloudflare script
 import Script from "next/script"
 
+const siteKey = process.env.NEXT_PUBLIC_CLOUDFLARE_SITE_KEY as string
 
 export type ContactFormInputs = z.infer<typeof ContactFormSchema>
 
@@ -109,7 +110,7 @@ export default function ContactForm() {
       <div 
         className="cf-turnstile mb-8" 
         data-theme="light" 
-        data-sitekey={process.env.NEXT_PUBLIC_CLOUDFLARE_SITE_KEY}
+        data-sitekey={siteKey}
       ></div>
       
       <button
