@@ -7,44 +7,58 @@ import Lou from "../../public/images/louise.jpg"
 export default function Home() {
   return (
     <main className="min-h-screen bg-stone-300">
-      <div className="h-[500px] flex overflow-x-scroll overflow-y-hidden gap-2 py-2 mb-24">
+      <div className="h-[500px] flex overflow-x-scroll gap-2 py-2 mb-24">
+         <div className="min-w-[100px] h-[500px] relative">
+            <Image 
+              src={Lou}
+              alt="anime"
+              fill={true}
+              priority
+              className="object-cover h-full"
+            />
+          </div>
          
-          <Image 
-            src={Lou}
-            alt="anime"
-            priority
-            className="object-cover h-full w-[100px]"
-            style={{width: "auto", height: "auto"}}
-          />
-         
-          
-          <Image 
-            src={Tman}
-            alt="anime"
-            priority
-            className="object-cover h-full w-[300px]"
-          />
-          
+          <div className="min-w-[300px] h-[500px] relative"> 
+            <Image 
+              src={Tman}
+              alt="anime"
+              fill={true}
+              priority
+              className="object-cover h-full"
+            />
+          </div> 
 
-          <Image 
-            src={Fee}
-            alt="anime"
-            priority
-            className="object-cover h-full w-[300px]"
-          />
-          <Image 
-            src={Lou}
-            alt="anime"
-            priority
-            className="object-cover h-full w-[300px]"
-          />
-          <Image 
-            src={Tman}
-            alt="anime"
-            priority
-            className="object-cover h-full w-[300px]"
-          />
+          <div className="min-w-[300px] h-[500px] relative">
+            <Image 
+              src={Fee}
+              alt="anime"
+              fill={true}
+              priority
+              className="object-cover h-full"
+            />
+          </div>
+
+          <div className="min-w-[300px] h-[500px] relative">
+            <Image 
+              src={Lou}
+              alt="anime"
+              fill={true}
+              priority
+              className="object-cover h-full"
+            />
+          </div>
+
+          <div className="min-w-[300px] h-[500px] relative">
+            <Image 
+              src={Tman}
+              alt="anime"
+              fill={true}
+              priority
+              className="object-cover h-full"
+            />
+          </div>
       </div>
+
       <section className="px-8 pb-24 max-w-[60ch]">
         <h4 className="font-bold font-mont tracking-wide text-2xl text-slate-600 mb-4">What We Do...</h4>
         <p className="text-slate-600 mb-4">We specialise in commercial photography and videography for businesses throughout Norfolk, Cambridge and Suffolk.</p>
