@@ -13,7 +13,6 @@ export default function Home() {
               src={Lou}
               alt="anime"
               fill={true}
-              priority
               className="object-cover h-full"
             />
           </div>
@@ -23,7 +22,6 @@ export default function Home() {
               src={Tman}
               alt="anime"
               fill={true}
-              priority
               className="object-cover h-full"
             />
           </div> 
@@ -33,7 +31,6 @@ export default function Home() {
               src={Fee}
               alt="anime"
               fill={true}
-              priority
               className="object-cover h-full"
             />
           </div>
@@ -43,7 +40,6 @@ export default function Home() {
               src={Lou}
               alt="anime"
               fill={true}
-              priority
               className="object-cover h-full"
             />
           </div>
@@ -53,7 +49,6 @@ export default function Home() {
               src={Tman}
               alt="anime"
               fill={true}
-              priority
               className="object-cover h-full"
             />
           </div>
